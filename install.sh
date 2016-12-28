@@ -3,6 +3,9 @@
 ZSH_RC=".zshrc"
 ZSH_RC_PATH=$HOME"/"$ZSH_RC
 COMMON_RC_FILE=".commonrc"
+if [[ -v $1 ]]; then
+  COMMON_RC_FILE=$1
+fi
 
 cp ./$COMMON_RC_FILE $HOME
 echo "Searching for $ZSH_RC_PATH"
