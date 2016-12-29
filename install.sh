@@ -1,7 +1,8 @@
 #!/bin/bash
 
 ZSH_RC=".zshrc"
-ZSH_RC_PATH=$HOME"/"$ZSH_RC
+BASH_RC=".bashrc"
+
 COMMON_RC_FILE=".commonrc"
 if [ $# -eq 1 ]
   then
@@ -9,19 +10,27 @@ if [ $# -eq 1 ]
 fi
 
 cp ./$COMMON_RC_FILE $HOME
-echo "Searching for $ZSH_RC_PATH"
-if [ -e "$ZSH_RC_PATH" ]
-then
-  echo "$ZSH_RC file has been found, checking if it already includes $COMMON_RC_FILE"
-  if grep -Fxq "$ZSH_RC_PATH" "$COMMON_RC_FILE"
+function link_commonrc() {
+  system_rc=$1
+  system_rc_path=$HOME"/"$system_rc
+  commonrc=$2
+  echo "Searching for $system_rc_path"
+  if [ -e "$system_rc_path" ]
   then
-   echo "looks like $COMMON_RC_FILE need to be added. Adding."
-   echo "source ~/$COMMON_RC_FILE" >> ~/$ZSH_RC_PATH
-   echo "file $COMMON_RC_FILE has been added to the $ZSH_RC"
-   echo "$COMMON_RC_FILE has been added to the $ZSH_RC"
+    echo "$system_rc file has been found, checking if it already includes $commonrc"
+    if grep -Fxq "$system_rc_path" "$commonrc"
+    then
+     echo "looks like $commonrc need to be added. Adding."
+     echo "source ~/$commonrc" >> ~/$system_rc_path
+     echo "file $commonrc has been added to the $system_rc"
+     echo "$commonrc has been added to the $system_rc"
+    else
+     echo "$system_rc already has the $commonrc"
+    fi
   else
-   echo "$ZSH_RC already has the $COMMON_RC_FILE"
+    echo "no $system_rc file has been found."
   fi
-else
-  echo "no $ZSH_RC file has been found."
-fi
+}
+
+link_commonrc $ZSH_RC $COMMON_RC_FILE
+link_commonrc $BASH_RC $COMMON_RC_FILE
