@@ -10,6 +10,7 @@ curl -s https://raw.githubusercontent.com/b0noI/rcinstaller/master/install.sh | 
 # How Does It Work?
 
 Overall, the script executes the following steps:
+
 1. checks if the ~/.profile.d directory exists and if not - created it;
 2. adds "[ -f ${HOME}/.profile.d/*.sh ] && source ${HOME}/.profile.d/*.sh" to the .zshrc (if it is not exists there already);
 3. same for the .bashrc;
