@@ -4,7 +4,7 @@ ZSH_RC=".zshrc"
 BASH_RC=".bashrc"
 PROFILES_PATH="${HOME}/.profile.d"
 
-LINK_TO_BASH_RC="for f in ${HOME}/.profile.d/*; do source $f; done"
+LINK_TO_BASH_RC="for f in ${HOME}/.profile.d/*; do source \$f; done"
 
 COMMON_RC_FILE=".commonrc"
 if [ $# -eq 1 ]
