@@ -32,7 +32,7 @@ function add_link_to_rcfile() {
      echo "$system_rc already has the needed link: $LINK_TO_BASH_RC"
     else
      echo "looks like the link need to be added. Adding."
-     echo "${LINK_TO_BASH_RC}" >> $system_rc_path
+     echo $LINK_TO_BASH_RC >> $system_rc_path
      echo "The link has been added to the $system_rc"
     fi
   else
